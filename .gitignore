@@ -19,6 +19,5 @@ pubspec.lock
 .analysis_options.yaml
 .flutter-plugins
 .flutter-plugins-dependencies
-.android/Flutter
 .ios/Flutter
 .dart_tool
