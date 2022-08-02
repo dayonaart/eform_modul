@@ -19,9 +19,6 @@ import 'package:eform_modul/src/components/testing.dart';
 import 'package:eform_modul/src/components/url-api.dart';
 import 'package:eform_modul/src/utility/Routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_active_passive_liveness/flutter_active_passive_liveness.dart';
-import 'package:flutter_active_passive_liveness/gesture_type.dart';
-import 'package:flutter_active_passive_liveness/schema_type.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -67,6 +64,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       builder: (context, child) {
         child = EasyLoading.init()(context, child);
         return MediaQuery(
@@ -80,7 +78,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       // home: Testing(),
-      initialRoute: "/datafile",
+      initialRoute: "/splashScreen",
       getPages: Routes().listPage,
     );
   }

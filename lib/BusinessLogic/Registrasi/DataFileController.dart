@@ -19,9 +19,9 @@ import 'package:eform_modul/src/utility/Routes.dart';
 import 'package:eform_modul/src/utility/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_active_passive_liveness/flutter_active_passive_liveness.dart';
-import 'package:flutter_active_passive_liveness/gesture_type.dart';
-import 'package:flutter_active_passive_liveness/schema_type.dart';
+// import 'package:flutter_active_passive_liveness/flutter_active_passive_liveness.dart';
+// import 'package:flutter_active_passive_liveness/gesture_type.dart';
+// import 'package:flutter_active_passive_liveness/schema_type.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 
 import 'package:flutter_svg/svg.dart';
@@ -327,230 +327,230 @@ class DataFileController extends GetxController {
   // }
 
   Future<void> startLiveness(BuildContext context, {bool isOnlyLiveness = false}) async {
-    try {
-      // initialize
-      var config;
-      if (Platform.isAndroid) {
-        config = FlutterActivePassiveParams(
-          // licenseKey For Development
-          licenseKey: "78561-F42BE-41D21-5FFF3",
-          // licenseKey For Production
-          // licenseKey: "CAD3A-1E119-FDE6F-D9157",
-          schemaType: SchemaType.schema8,
-          primaryColor: "#F5D25D",
-          // APIKey For Development
-          activeApiKey: "aXRrVMYBGxUKu5ee8fk3kB38VnXQuMBE",
-          // APIKey For Production
-          // activeApiKey: "t6tT02eXpz6XgJKhfsGg2fCr7dlYg5h1",
+    // try {
+    //   // initialize
+    //   var config;
+    //   if (Platform.isAndroid) {
+    //     config = FlutterActivePassiveParams(
+    //       // licenseKey For Development
+    //       licenseKey: "78561-F42BE-41D21-5FFF3",
+    //       // licenseKey For Production
+    //       // licenseKey: "CAD3A-1E119-FDE6F-D9157",
+    //       schemaType: SchemaType.schema8,
+    //       primaryColor: "#F5D25D",
+    //       // APIKey For Development
+    //       activeApiKey: "aXRrVMYBGxUKu5ee8fk3kB38VnXQuMBE",
+    //       // APIKey For Production
+    //       // activeApiKey: "t6tT02eXpz6XgJKhfsGg2fCr7dlYg5h1",
 
-          gestureList: [
-            GestureType.blinkEyes,
-            GestureType.openMounth,
-          ],
-        );
-      } else if (Platform.isIOS) {
-        config = FlutterActivePassiveParams(
-          // licenseKey For Development
-          licenseKey: "55FA9-1F712-6A53A-BE469",
-          // licenseKey For Production
-          // licenseKey: "B5149-4F36E-69BDC-79789",
-          schemaType: SchemaType.schema8,
-          primaryColor: "#F5D25D",
-          // APIKey For Development
-          activeApiKey: "aXRrVMYBGxUKu5ee8fk3kB38VnXQuMBE",
-          // APIKey For Production
-          // activeApiKey: " omHqODTphN7K6662BD7gWgE9rVyOchiA",
+    //       gestureList: [
+    //         GestureType.blinkEyes,
+    //         GestureType.openMounth,
+    //       ],
+    //     );
+    //   } else if (Platform.isIOS) {
+    //     config = FlutterActivePassiveParams(
+    //       // licenseKey For Development
+    //       licenseKey: "55FA9-1F712-6A53A-BE469",
+    //       // licenseKey For Production
+    //       // licenseKey: "B5149-4F36E-69BDC-79789",
+    //       schemaType: SchemaType.schema8,
+    //       primaryColor: "#F5D25D",
+    //       // APIKey For Development
+    //       activeApiKey: "aXRrVMYBGxUKu5ee8fk3kB38VnXQuMBE",
+    //       // APIKey For Production
+    //       // activeApiKey: " omHqODTphN7K6662BD7gWgE9rVyOchiA",
 
-          gestureList: [
-            GestureType.blinkEyes,
-            GestureType.openMounth,
-          ],
-        );
-      }
+    //       gestureList: [
+    //         GestureType.blinkEyes,
+    //         GestureType.openMounth,
+    //       ],
+    //     );
+    //   }
 
-      // mulai liveness detection
-      ResultData? results = await FluttterActivePassiveLiveness.startLivenessDetection(config);
-      // prefs.setString('scoreLiveness', results!.data.toString());
-      // check results tidak sama dengan null
-      dev.log('Ini Adalah Respon Liveness : ${results?.data}');
-      dev.log('Ini Adalah Respon Liveness : ${results}');
-      resultLiveness = results?.data as String;
+    //   // mulai liveness detection
+    //   ResultData? results = await FluttterActivePassiveLiveness.startLivenessDetection(config);
+    //   // prefs.setString('scoreLiveness', results!.data.toString());
+    //   // check results tidak sama dengan null
+    //   dev.log('Ini Adalah Respon Liveness : ${results?.data}');
+    //   dev.log('Ini Adalah Respon Liveness : ${results}');
+    //   resultLiveness = results?.data as String;
 
-      if (results?.data != null) {
-        customLoading.showLoading("Memuat data");
+    //   if (results?.data != null) {
+    //     customLoading.showLoading("Memuat data");
 
-        Uint8List bytes =
-            (await FlutterExifRotation.rotateImage(path: results!.image)).readAsBytesSync();
+    //     Uint8List bytes =
+    //         (await FlutterExifRotation.rotateImage(path: results!.image)).readAsBytesSync();
 
-        try {
-          /// compressing....
-          Uint8List? selfiePhoto = await bytes.compress(maxSize: 1 * 1024 * 1024);
+    //     try {
+    //       /// compressing....
+    //       Uint8List? selfiePhoto = await bytes.compress(maxSize: 1 * 1024 * 1024);
 
-          /// save to sharepref...
-          prefs.setString('selfiePhoto', base64.encode(selfiePhoto!));
-          await GallerySaver.saveImage(results.image);
-          // print(
-          //     "COMPRESS RESULT SELFIE ${(selfiePhoto.lengthInBytes / 1024 / 1024).toStringAsFixed(2)}Mb");
+    //       /// save to sharepref...
+    //       prefs.setString('selfiePhoto', base64.encode(selfiePhoto!));
+    //       await GallerySaver.saveImage(results.image);
+    //       // print(
+    //       //     "COMPRESS RESULT SELFIE ${(selfiePhoto.lengthInBytes / 1024 / 1024).toStringAsFixed(2)}Mb");
 
-          /// saving to gallery
-          // await ImageGallerySaver.saveImage(selfiePhoto);
-          // await File('${results.image}').writeAsString(results.image);
+    //       /// saving to gallery
+    //       // await ImageGallerySaver.saveImage(selfiePhoto);
+    //       // await File('${results.image}').writeAsString(results.image);
 
-          customLoading.dismissLoading();
+    //       customLoading.dismissLoading();
 
-          await saveImageSize(
-            originalKey: "originalSelfiePhotoSize",
-            compressedKey: "compressedSelfiePhotoSize",
-            originalSize: bytes.lengthInBytes,
-            compressSize: selfiePhoto.lengthInBytes,
-          );
+    //       await saveImageSize(
+    //         originalKey: "originalSelfiePhotoSize",
+    //         compressedKey: "compressedSelfiePhotoSize",
+    //         originalSize: bytes.lengthInBytes,
+    //         compressSize: selfiePhoto.lengthInBytes,
+    //       );
 
-          // await Future.delayed(Duration(seconds: 1));
+    //       // await Future.delayed(Duration(seconds: 1));
 
-          //cek Livness
-          var bodycekLiveness = await bodyCekLiveness;
-          var resulthasilLiveness =
-              await Services().POST(urlcekLiveness, 'Api Cek Liveness', body: bodycekLiveness);
-          print(resulthasilLiveness?.statusCode);
+    //       //cek Livness
+    //       var bodycekLiveness = await bodyCekLiveness;
+    //       var resulthasilLiveness =
+    //           await Services().POST(urlcekLiveness, 'Api Cek Liveness', body: bodycekLiveness);
+    //       print(resulthasilLiveness?.statusCode);
 
-          var resulthasilLivenessStatus = resulthasilLiveness?.data?.header['status'];
+    //       var resulthasilLivenessStatus = resulthasilLiveness?.data?.header['status'];
 
-          if (resulthasilLiveness?.statusCode == 200 && resulthasilLivenessStatus == true) {
-            livenssResponseModel = LivenssResponseModel.fromJson(resulthasilLiveness?.data?.body);
-            if (!isOnlyLiveness) {
-              customLoading.dismissLoading();
-              goSelfieKTPCamera();
-            } else {
-              customLoading.dismissLoading();
-              checkFileDone();
-            }
-          } else if (resulthasilLiveness?.statusCode == 400) {
-            customLoading.dismissLoading();
-            // goSelfieKTPCamera();
-            return Get.dialog(PopoutWrapContent(
-              textTitle: '',
-              button_radius: 4,
-              buttonText: 'Ok,saya Mengerti',
-              ontap: () {
-                Get.back();
-                startLiveness(context);
-              },
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: SvgPicture.asset('assets/images/icons/bell_icon.svg'),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Mohon Maaf',
-                    style: PopUpTitle,
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "Validasi wajah Anda belum sesuai. Saat melakukan foto selfie pastikan Anda mendapatkan pencahayaan yang jelas dengan menampilkan wajah asli Anda.",
-                    style: infoStyle,
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              ),
-            ));
-          } else {
-            CustomLoading().dismissLoading();
-            ERROR_DIALOG();
-          }
-          // akhir cek liveness
-          var body = await _bodySavePhotoSelfie;
-          var _resSelfie = await Services().POST(urlSavePhoto, 'Api Save Photo', body: body);
-          if (_resSelfie?.statusCode != 200) {
-            // print('Masuk Sini');
-            customLoading.dismissLoading();
-            return;
-          }
-          // dev.log('Ini Body ${_bodySavePhotoSelfie}');
-          // print("Ini Adalah Status Code Dari Save Photo Selfie" +
-          //     _resSelfie!.statusCode.toString());
-          // assert(Global().compareableJwtBody(responseBody: responseBody, jwtBody: jwtBody));
-          customLoading.dismissLoading();
-        } catch (e) {
-          customLoading.dismissLoading();
-          Get.snackbar("Perhatian", "$e");
-        }
-      } else {
-        // show the dialog
-        return Get.dialog(PopoutWrapContent(
-          textTitle: '',
-          button_radius: 4,
-          buttonText: 'Ok,saya Mengerti',
-          ontap: () {
-            Get.back();
-            startLiveness(context);
-          },
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: SvgPicture.asset('assets/images/icons/bell_icon.svg'),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                'Mohon Maaf',
-                style: PopUpTitle,
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              Text(
-                "Validasi wajah Anda belum sesuai. Saat melakukan foto selfie pastikan Anda mendapatkan pencahayaan yang jelas dengan menampilkan wajah asli Anda.",
-                style: infoStyle,
-                textAlign: TextAlign.center,
-              )
-            ],
-          ),
-        ));
+    //       if (resulthasilLiveness?.statusCode == 200 && resulthasilLivenessStatus == true) {
+    //         livenssResponseModel = LivenssResponseModel.fromJson(resulthasilLiveness?.data?.body);
+    //         if (!isOnlyLiveness) {
+    //           customLoading.dismissLoading();
+    //           goSelfieKTPCamera();
+    //         } else {
+    //           customLoading.dismissLoading();
+    //           checkFileDone();
+    //         }
+    //       } else if (resulthasilLiveness?.statusCode == 400) {
+    //         customLoading.dismissLoading();
+    //         // goSelfieKTPCamera();
+    //         return Get.dialog(PopoutWrapContent(
+    //           textTitle: '',
+    //           button_radius: 4,
+    //           buttonText: 'Ok,saya Mengerti',
+    //           ontap: () {
+    //             Get.back();
+    //             startLiveness(context);
+    //           },
+    //           content: Column(
+    //             crossAxisAlignment: CrossAxisAlignment.center,
+    //             children: [
+    //               Center(
+    //                 child: SvgPicture.asset('assets/images/icons/bell_icon.svg'),
+    //               ),
+    //               SizedBox(
+    //                 height: 8,
+    //               ),
+    //               Text(
+    //                 'Mohon Maaf',
+    //                 style: PopUpTitle,
+    //               ),
+    //               SizedBox(
+    //                 height: 12,
+    //               ),
+    //               Text(
+    //                 "Validasi wajah Anda belum sesuai. Saat melakukan foto selfie pastikan Anda mendapatkan pencahayaan yang jelas dengan menampilkan wajah asli Anda.",
+    //                 style: infoStyle,
+    //                 textAlign: TextAlign.center,
+    //               )
+    //             ],
+    //           ),
+    //         ));
+    //       } else {
+    //         CustomLoading().dismissLoading();
+    //         ERROR_DIALOG();
+    //       }
+    //       // akhir cek liveness
+    //       var body = await _bodySavePhotoSelfie;
+    //       var _resSelfie = await Services().POST(urlSavePhoto, 'Api Save Photo', body: body);
+    //       if (_resSelfie?.statusCode != 200) {
+    //         // print('Masuk Sini');
+    //         customLoading.dismissLoading();
+    //         return;
+    //       }
+    //       // dev.log('Ini Body ${_bodySavePhotoSelfie}');
+    //       // print("Ini Adalah Status Code Dari Save Photo Selfie" +
+    //       //     _resSelfie!.statusCode.toString());
+    //       // assert(Global().compareableJwtBody(responseBody: responseBody, jwtBody: jwtBody));
+    //       customLoading.dismissLoading();
+    //     } catch (e) {
+    //       customLoading.dismissLoading();
+    //       Get.snackbar("Perhatian", "$e");
+    //     }
+    //   } else {
+    //     // show the dialog
+    //     return Get.dialog(PopoutWrapContent(
+    //       textTitle: '',
+    //       button_radius: 4,
+    //       buttonText: 'Ok,saya Mengerti',
+    //       ontap: () {
+    //         Get.back();
+    //         startLiveness(context);
+    //       },
+    //       content: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.center,
+    //         children: [
+    //           Center(
+    //             child: SvgPicture.asset('assets/images/icons/bell_icon.svg'),
+    //           ),
+    //           SizedBox(
+    //             height: 8,
+    //           ),
+    //           Text(
+    //             'Mohon Maaf',
+    //             style: PopUpTitle,
+    //           ),
+    //           SizedBox(
+    //             height: 12,
+    //           ),
+    //           Text(
+    //             "Validasi wajah Anda belum sesuai. Saat melakukan foto selfie pastikan Anda mendapatkan pencahayaan yang jelas dengan menampilkan wajah asli Anda.",
+    //             style: infoStyle,
+    //             textAlign: TextAlign.center,
+    //           )
+    //         ],
+    //       ),
+    //     ));
 
-        // startLiveness();
-      }
-    } catch (e) {
-      return Get.dialog(PopoutWrapContent(
-        textTitle: '',
-        button_radius: 4,
-        buttonText: 'Ok,saya Mengerti',
-        ontap: () {
-          Get.back();
-          startLiveness(context);
-        },
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: SvgPicture.asset('assets/images/icons/bell_icon.svg'),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              'Mohon Maaf',
-              style: PopUpTitle,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              "Terjadi Masalah, Silahkan Coba Ambil Foto Lagi. ini Errornya ${e.toString()}",
-              style: infoStyle,
-              textAlign: TextAlign.center,
-            )
-          ],
-        ),
-      ));
-    }
+    //     // startLiveness();
+    //   }
+    // } catch (e) {
+    //   return Get.dialog(PopoutWrapContent(
+    //     textTitle: '',
+    //     button_radius: 4,
+    //     buttonText: 'Ok,saya Mengerti',
+    //     ontap: () {
+    //       Get.back();
+    //       startLiveness(context);
+    //     },
+    //     content: Column(
+    //       crossAxisAlignment: CrossAxisAlignment.center,
+    //       children: [
+    //         Center(
+    //           child: SvgPicture.asset('assets/images/icons/bell_icon.svg'),
+    //         ),
+    //         SizedBox(
+    //           height: 8,
+    //         ),
+    //         Text(
+    //           'Mohon Maaf',
+    //           style: PopUpTitle,
+    //         ),
+    //         SizedBox(
+    //           height: 12,
+    //         ),
+    //         Text(
+    //           "Terjadi Masalah, Silahkan Coba Ambil Foto Lagi. ini Errornya ${e.toString()}",
+    //           style: infoStyle,
+    //           textAlign: TextAlign.center,
+    //         )
+    //       ],
+    //     ),
+    //   ));
+    // }
   }
 
   goSelfieKTPCamera() async {

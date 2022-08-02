@@ -111,10 +111,10 @@ dependencies:
 
   dotted_border: ^2.0.0
 
-  flutter_active_passive_liveness:
-    git:
-      url: https://gitlab+deploy-token-742801:tqDsceacRyyPBCK38oms@gitlab.com/oxycreative/flutter-packages/active-passive-liveness.git
-      ref: v2.0.2-encrypted-prod
+  # flutter_active_passive_liveness:
+  #   git:
+  #     url: https://gitlab+deploy-token-742801:tqDsceacRyyPBCK38oms@gitlab.com/oxycreative/flutter-packages/active-passive-liveness.git
+  #     ref: v2.0.2-encrypted-prod
 
 
   intl_phone_number_input: ^0.7.0+2
@@ -123,7 +123,7 @@ dependencies:
   # tflite_flutter_helper: ^0.3.1
   pin_code_fields: ^7.3.0
   xml2json: ^5.3.2
-  open_file: ^3.2.1
+  # open_file: ^3.2.1
   syncfusion_flutter_pdf: ^19.4.56-beta
   path_provider: ^2.0.9
   # image_gallery_saver: ^1.7.1

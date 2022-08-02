@@ -12,7 +12,6 @@ import 'package:eform_modul/src/views/pemilihan-cabang-page/pemilihanCabangIndon
 import 'package:eform_modul/src/views/pemilihan-cabang-page/pemilihanCabangLuar_page.dart';
 import 'package:eform_modul/src/views/register/verification/phone_verification_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_active_passive_liveness/gesture_type.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:isolate_image_compress/isolate_image_compress.dart';
@@ -25,8 +24,6 @@ import '../../components/custom_body.dart';
 import '../../components/custom_button_white.dart';
 import '../../components/label-text.dart';
 import '../../components/theme_const.dart';
-import 'package:flutter_active_passive_liveness/schema_type.dart';
-import 'package:flutter_active_passive_liveness/flutter_active_passive_liveness.dart';
 import 'dart:ui' as ui;
 import 'package:get/get.dart';
 

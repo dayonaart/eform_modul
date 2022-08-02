@@ -53,11 +53,6 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin external_app_launcher, com.example.launchexternalapp.LaunchexternalappPlugin", e);
     }
     try {
-      flutterEngine.getPlugins().add(new id.digidata.flutter_active_passive_liveness.ActivePassiveLivenessPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin flutter_active_passive_liveness, id.digidata.flutter_active_passive_liveness.ActivePassiveLivenessPlugin", e);
-    }
-    try {
       flutterEngine.getPlugins().add(new vn.hunghd.flutterdownloader.FlutterDownloaderPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin flutter_downloader, vn.hunghd.flutterdownloader.FlutterDownloaderPlugin", e);
@@ -116,11 +111,6 @@ public final class GeneratedPluginRegistrant {
       flutterEngine.getPlugins().add(new com.example.libphonenumber_plugin.LibphonenumberPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin libphonenumber_plugin, com.example.libphonenumber_plugin.LibphonenumberPlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new com.crazecoder.openfile.OpenFilePlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin open_file, com.crazecoder.openfile.OpenFilePlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());
