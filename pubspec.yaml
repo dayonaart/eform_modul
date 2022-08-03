@@ -111,10 +111,10 @@ dependencies:
 
   dotted_border: ^2.0.0
 
-  # flutter_active_passive_liveness:
-  #   git:
-  #     url: https://gitlab+deploy-token-742801:tqDsceacRyyPBCK38oms@gitlab.com/oxycreative/flutter-packages/active-passive-liveness.git
-  #     ref: v2.0.2-encrypted-prod
+  flutter_active_passive_liveness:
+    git:
+      url: https://gitlab+deploy-token-742801:tqDsceacRyyPBCK38oms@gitlab.com/oxycreative/flutter-packages/active-passive-liveness.git
+      ref: v2.0.2-encrypted-prod
 
 
   intl_phone_number_input: ^0.7.0+2

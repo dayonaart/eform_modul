@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:eform_modul/main.dart';
 import 'package:eform_modul/response_model/data_diri1_model_pref.dart';
 import 'package:eform_modul/src/components/alert-dialog-new-wrap.dart';
 import 'package:eform_modul/src/components/dropdown.dart';
@@ -356,7 +357,6 @@ class DataDiri2Controller extends GetxController {
             postalCodeController.clear();
             update();
           }
-          ;
         }
         break;
       case "city":

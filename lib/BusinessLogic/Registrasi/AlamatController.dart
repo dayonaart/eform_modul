@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:eform_modul/BusinessLogic/Registrasi/DataController.dart';
 import 'package:eform_modul/service/preferences-alamat-luar-indonesia.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../service/preferences-alamat-indonesia.dart';
 import '../../src/models/alamat-indonesia.dart';
 import '../../src/models/alamat-luar-indonesia.dart';

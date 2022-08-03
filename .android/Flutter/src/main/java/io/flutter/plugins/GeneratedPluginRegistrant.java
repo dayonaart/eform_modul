@@ -53,6 +53,11 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin external_app_launcher, com.example.launchexternalapp.LaunchexternalappPlugin", e);
     }
     try {
+      flutterEngine.getPlugins().add(new id.digidata.flutter_active_passive_liveness.ActivePassiveLivenessPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin flutter_active_passive_liveness, id.digidata.flutter_active_passive_liveness.ActivePassiveLivenessPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new vn.hunghd.flutterdownloader.FlutterDownloaderPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin flutter_downloader, vn.hunghd.flutterdownloader.FlutterDownloaderPlugin", e);

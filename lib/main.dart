@@ -83,3 +83,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+String get rootBundleCostum {
+  return 'packages/eform_modul/';
+}
