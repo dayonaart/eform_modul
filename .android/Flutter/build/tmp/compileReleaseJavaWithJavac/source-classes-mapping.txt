@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-bbc/u46/eform_modul/BuildConfig.java
- bbc.u46.eform_modul.BuildConfig
